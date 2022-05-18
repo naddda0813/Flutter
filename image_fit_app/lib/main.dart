@@ -36,19 +36,19 @@ class Home extends StatelessWidget {
               'images/turtle.gif',
               width: 50,
               height: 100,
-            )
+            ),
             Image.asset(
               'images/turtle.gif',
               width: 50,
               height: 100,
               fit:BoxFit.contain, //비율에 맞게 
-            )
+            ),
             Image.asset(
               'images/turtle.gif',
               width: 50,
               height: 100,
               fit:BoxFit.fill,    //크기에 꽉 채워서 
-            )
+            ),
             Image.asset(
               'images/turtle.gif',
               width: 50,
