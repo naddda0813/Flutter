@@ -161,8 +161,7 @@ calcBMI(BuildContext context) {
       
  setState(() {
   bmiCalc = (double.parse(weight.text) / ((double.parse(height.text) *0.01) * (double.parse(height.text) *0.01)));
- // return bmiCalc.toStringAsFixed(2);
-       Message.calcresult = "나의 체질량 지수 \n$bmiCalc ";
+    Message.calcresult = "나의 체질량 지수 \n$bmiCalc ";
     });
     
    } 
@@ -189,30 +188,6 @@ if(bmiCalc > 10 && bmiCalc <= 18.4) {
 }
 
   }
-}
-
-
-
-// 비만, 정상 등급 구분 
-//rating(BuildContext context)  {
-// if(bmiCalc > 10 && bmiCalc <= 18.4) {
-//   Message.isObesity = "저체중\n체중관리가 필요합니다.";
-//   Message.image ="images/bmi1.png";
-// } else if(bmiCalc > 18.4 && bmiCalc <=22.9) {
-//   Message.isObesity = "정상체중\n유지가 필요합니다.";
-//   Message.image ="images/bmi2.png";
-// } else if (bmiCalc > 22.9 && bmiCalc <= 24.9) {
-//   Message.isObesity = "과체중\n체중관리가 필요합니다.";
-//   Message.image ="images/bmi3.png";
-// } else if (bmiCalc > 24.9 && bmiCalc <= 29.9) {
-//   Message.isObesity = "비만\n체중관리가 필요합니다.";
-//   Message.image ="images/bmi4.png";
-// } else if (bmiCalc > 29.9) {
-//   Message.isObesity = "고도비만\n체중관리가 필요합니다.";
-//   Message.image ="images/bmi5.png";
-// } else {
-//   Message.isObesity = "계산하기 어려운 수치입니다."; 
-// }
 
 
 

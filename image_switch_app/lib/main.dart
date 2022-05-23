@@ -55,56 +55,57 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('image 확대 및 축소'),
       ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 350,
-            height: 650,
-            child: Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 350,
+              height: 650,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    //  sizedbox는 하나밖에 못해서 컬럼으로 감싸야 함
+                    _lampImage,
+                    width: _lampWidth,
+                    height: _lampHeight,
+                  ),
+                ],
+              ),
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(   //  sizedbox는 하나밖에 못해서 컬럼으로 감싸야 함 
-                _lampImage,
-                width: _lampWidth,
-                height: _lampHeight,
-              ),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      decisonLampSize();
+                    });
+                  },
+                  child: Text(_buttonName),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('전구 스위치'),
+                    Switch(
+                        value: _switch,
+                        onChanged: (value) {
+                          //사용자가 바꾼 값
+                          setState(() {
+                            _switch = value;
+                            decisionOnOff();
+                          });
+                        })
+                  ],
+                ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    decisonLampSize();
-                  });
-                },
-                child: Text(_buttonName),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-            Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('전구 스위치'),
-              Switch(
-                  value: _switch,
-                  onChanged: (value) {
-                    //
-                    setState(() {
-                      _switch = value;
-                      decisionOnOff();
-                    });
-                  })
-            ],
-          ),
-            ],
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
@@ -115,22 +116,22 @@ class _MyHomePageState extends State<MyHomePage> {
       //true
       _lampImage = "images/lamp_on.png";
     } else {
+      //false
       _lampImage = "images/lamp_off.png";
     }
   }
 
-decisonLampSize() {
-    if(_lampSizeStaus == "small") {
-     _lampWidth = 300;        //스물이면 바꿔주기 
-    _lampHeight = 600;
-    _buttonName = "image 축소";
-    _lampSizeStaus = "large";
-  } else{
-    _lampWidth = 150;        //빅 이면 바꿔주기 
-    _lampHeight = 300;
-    _buttonName = "image 확대";
-    _lampSizeStaus = "small";
+  decisonLampSize() {
+    if (_lampSizeStaus == "small") {
+      _lampWidth = 300; //스물이면 바꿔주기
+      _lampHeight = 600;
+      _buttonName = "image 축소";
+      _lampSizeStaus = "large";
+    } else {
+      _lampWidth = 150; //빅 이면 바꿔주기
+      _lampHeight = 300;
+      _buttonName = "image 확대";
+      _lampSizeStaus = "small";
+    }
   }
-}
-
 } //end
