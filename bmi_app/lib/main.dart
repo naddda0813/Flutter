@@ -1,4 +1,5 @@
 import 'package:bmi_app/calc.dart';
+import 'package:bmi_app/result.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         "/" :(context) => const Calc(),
-        "/Result": (context) => const Result();
+       "/Result": (context) => const Result(),
       },
       debugShowCheckedModeBanner : false,
     );
   }
 }
 
+                                                                        

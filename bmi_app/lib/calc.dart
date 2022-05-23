@@ -36,85 +36,93 @@ late String image;
       backgroundColor: Color.fromARGB(255, 241, 234, 211),
       appBar: AppBar(
         title: Text('BMI 계산'),
+        backgroundColor: Colors.indigo,
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 50, 25, 30),
-              child: Text('운동을 시작해볼까요?',
-              style: TextStyle(
-                fontSize: 35,
-              ),),
-            ),
-          SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            width: 250,
-            child: TextField(
-              controller: height,
-              decoration: InputDecoration(
-                labelText : "키를 입력하세요",
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.red),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.amber),
-                    borderRadius: BorderRadius.circular(15),
-                  )
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(25, 50, 25, 30),
+                  child: Text('운동을 시작해볼까요?',
+                  style: TextStyle(
+                    fontSize: 35,
+                  ),),
+                ),
+              const SizedBox(
+                height: 30,
               ),
-               keyboardType: TextInputType.number,
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            width: 250,
-            child: TextField(
-              controller:weight,
-              decoration: InputDecoration(
-                labelText : "몸무게를 입력하세요",
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.red),
-                    borderRadius: BorderRadius.circular(15),
+              SizedBox(
+                width: 250,
+                child: TextField(
+                  controller: height,
+                  decoration: InputDecoration(
+                    labelText : "키를 입력하세요",
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3, color: Colors.red),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3, color: Colors.amber),
+                        borderRadius: BorderRadius.circular(15),
+                      )
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(width: 3, color: Colors.amber),
-                    borderRadius: BorderRadius.circular(15),
-                  )
+                   keyboardType: TextInputType.number,
+                ),
               ),
-              keyboardType: TextInputType.number,
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                width: 250,
+                child: TextField(
+                  controller:weight,
+                  decoration: InputDecoration(
+                    labelText : "몸무게를 입력하세요",
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3, color: Colors.red),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(width: 3, color: Colors.amber),
+                        borderRadius: BorderRadius.circular(15),
+                      )
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  calcBMI(context);
+                  rating(context);
+                  Navigator.pushNamed(context,"/Result");
+                }
+                , child: const Text('계산 하기'),),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(calcresult,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(isObesity,
+                  style: const TextStyle(
+                    fontSize: 30,
+                  ),),
+                ),
+              
+              ],
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              calcBMI(context);
-              rating(context);
-              Navigator.pushNamed(context,"/Result");
-            }
-            , child: Text('계산 하기'),),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(calcresult,
-              style: TextStyle(
-                fontSize: 16,
-              ),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(isObesity,
-              style: TextStyle(
-                fontSize: 30,
-              ),),
-            ),
-          
-          ],
         ),
       ),
     );
@@ -141,24 +149,27 @@ missSnackBar(BuildContext context) {
 
 
 
-// 계산 
+// 에러 스낵바와 미스스낵바 
 calcBMI(BuildContext context) { 
   if (weight.text.trim().isEmpty | height.text.trim().isEmpty  ) {
     errorSnackBar(context);
   } else if (int.parse(weight.text) <= 0 || int.parse(weight.text) >=500 
   ||  int.parse(height.text) <=0 || int.parse(height.text)  >= 300  ) {
     missSnackBar(context);
-  } else {
-    setState(() {
-  bmiCalc = (double.parse(weight.text) / ((double.parse(height.text) *0.01) * (double.parse(height.text) *0.01)));
-      calcresult = "나의 체질량 지수 \n$bmiCalc ";
-    });
   }
+     else {
+      
+ setState(() {
+  bmiCalc = (double.parse(weight.text) / ((double.parse(height.text) *0.01) * (double.parse(height.text) *0.01)));
+ // return bmiCalc.toStringAsFixed(2);
+       Message.calcresult = "나의 체질량 지수 \n$bmiCalc ";
+    });
+    
+   } 
 }
 
-// 비만, 정상 등급 구분 
 rating(BuildContext context)  {
-if(bmiCalc > 0 && bmiCalc <= 18.4) {
+if(bmiCalc > 10 && bmiCalc <= 18.4) {
   Message.isObesity = "저체중\n체중관리가 필요합니다.";
   Message.image ="images/bmi1.png";
 } else if(bmiCalc > 18.4 && bmiCalc <=22.9) {
@@ -176,7 +187,34 @@ if(bmiCalc > 0 && bmiCalc <= 18.4) {
 } else {
   Message.isObesity = "계산하기 어려운 수치입니다."; 
 }
+
+  }
 }
+
+
+
+// 비만, 정상 등급 구분 
+//rating(BuildContext context)  {
+// if(bmiCalc > 10 && bmiCalc <= 18.4) {
+//   Message.isObesity = "저체중\n체중관리가 필요합니다.";
+//   Message.image ="images/bmi1.png";
+// } else if(bmiCalc > 18.4 && bmiCalc <=22.9) {
+//   Message.isObesity = "정상체중\n유지가 필요합니다.";
+//   Message.image ="images/bmi2.png";
+// } else if (bmiCalc > 22.9 && bmiCalc <= 24.9) {
+//   Message.isObesity = "과체중\n체중관리가 필요합니다.";
+//   Message.image ="images/bmi3.png";
+// } else if (bmiCalc > 24.9 && bmiCalc <= 29.9) {
+//   Message.isObesity = "비만\n체중관리가 필요합니다.";
+//   Message.image ="images/bmi4.png";
+// } else if (bmiCalc > 29.9) {
+//   Message.isObesity = "고도비만\n체중관리가 필요합니다.";
+//   Message.image ="images/bmi5.png";
+// } else {
+//   Message.isObesity = "계산하기 어려운 수치입니다."; 
+// }
+
+
 
 
 }// end

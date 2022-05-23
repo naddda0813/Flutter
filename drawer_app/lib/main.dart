@@ -75,7 +75,7 @@ class MyHomePage extends StatelessWidget {
               ),
               title: const Text('Home'),
               trailing: const Icon(Icons.add),
-            )
+            ),
           ],
         ),
       ),
