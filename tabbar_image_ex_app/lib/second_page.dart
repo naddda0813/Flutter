@@ -25,14 +25,8 @@ class _SecondPageState extends State<SecondPage> {
     ];
     currentImage = 0; //초기값
     //name
-    cardname = [
-      "자기 싫은 짱구",
-      "잠들어버린 짱구",
-      "양파는 싫은 짱구",
-      "민초는 싫은 짱구"
-    ];
+    cardname = ["자기 싫은 짱구", "잠들어버린 짱구", "양파는 싫은 짱구", "민초는 싫은 짱구"];
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +44,11 @@ class _SecondPageState extends State<SecondPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-              cardname[currentImage],
-              style: const TextStyle(
-                fontSize: 25,),
-             ),
+                cardname[currentImage],
+                style: const TextStyle(
+                  fontSize: 25,
+                ),
+              ),
               Image.asset(
                 "images/${imageName[currentImage]}",
                 width: 350,

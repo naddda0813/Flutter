@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatefulWidget {
@@ -25,67 +24,54 @@ class _FirstPageState extends State<FirstPage> {
     ];
     currentImage = 0; //초기값
     //name
-    cardname = [
-      "자기 싫은 짱구",
-      "잠들어버린 짱구",
-      "양파는 싫은 짱구",
-      "민초는 싫은 짱구"
-    ];
+    cardname = ["자기 싫은 짱구", "잠들어버린 짱구", "양파는 싫은 짱구", "민초는 싫은 짱구"];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('First page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             Text(
-              cardname[currentImage],
-              style: const TextStyle(
-                fontSize: 25,),
-             ),
-            Image.asset(
-              "images/${imageName[currentImage]}",
-              width: 350, height: 400, fit: BoxFit.fill
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                   _onPrev();
-                  }
-                , child: const Text("이전")
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                  _onNext();
-                  }
-                , child: const Text("다음")
-                ),
-              ],
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('First page'),
         ),
-      )
-          
-        
-         
-      
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                cardname[currentImage],
+                style: const TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+              Image.asset("images/${imageName[currentImage]}",
+                  width: 350, height: 400, fit: BoxFit.fill),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        _onPrev();
+                      },
+                      child: const Text("이전")),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        _onNext();
+                      },
+                      child: const Text("다음")),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 
- //functions
+  //functions
   //이전 버튼을 누를때
   _onPrev() {
     setState(() {
@@ -106,5 +92,4 @@ class _FirstPageState extends State<FirstPage> {
       }
     });
   }
-
 } //end
