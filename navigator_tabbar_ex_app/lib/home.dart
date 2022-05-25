@@ -30,8 +30,7 @@ class MyHome extends StatefulWidget {
   State<MyHome> createState() => _MyHomeState();
 }
 
-class _MyHomeState extends State<MyHome>
-    with SingleTickerProviderStateMixin {
+class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   //tab바 생성
   //property
   late TabController controller;

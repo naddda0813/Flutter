@@ -64,6 +64,7 @@ class _MyHomepageState extends State<MyHomepage> {
               controller: controllerPW,
               decoration: InputDecoration(labelText: "패스워드를 입력하세요."),
               keyboardType: TextInputType.text,
+              obscureText: true,
             ),
             const SizedBox(
               height: 20,
