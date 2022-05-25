@@ -5,7 +5,8 @@ import 'package:naviagator_lamp_app/message.dart';
 class Modify extends StatefulWidget {
   final String text;
   final bool lighting;
-  const Modify({Key? key, required this.text, required this.lighting}) : super(key: key);
+  const Modify({Key? key, required this.text, required this.lighting})
+      : super(key: key);
 
   @override
   State<Modify> createState() => _ModifyState();
@@ -13,20 +14,20 @@ class Modify extends StatefulWidget {
 
 class _ModifyState extends State<Modify> {
   //property
-  late TextEditingController controller;  
-  late String imageName; 
+  late TextEditingController controller;
+  late String imageName;
   late bool switchOnOff;
-  late String lights; //전구 불 글씨 바꾸기 
+  late String lights; //전구 불 글씨 바꾸기
   late List list;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController(text: widget.text);
-    imageName = Message.imageName;    //이미지
-    switchOnOff = widget.lighting;  //스위치값 받기
+    imageName = Message.imageName; //이미지
+    switchOnOff = widget.lighting; //스위치값 받기
     lights = "";
-    list =[]; 
+    list = [];
   }
 
   @override
@@ -43,29 +44,28 @@ class _ModifyState extends State<Modify> {
               padding: const EdgeInsets.all(20.0),
               child: TextField(
                 controller: controller,
-                decoration: InputDecoration(
-                  labelText: "글자를 입력하세요"
-                ),
+                decoration: InputDecoration(labelText: "글자를 입력하세요"),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              Text(lights),
-              Switch(
-                value: switchOnOff, 
-                onChanged: (value) {
-                    switchOnOff = value;
-                  setState(() {
-                    decisionOnOff();
-                  });
-                }),
-            ],
+                Text(lights),
+                Switch(
+                    value: switchOnOff,
+                    onChanged: (value) {
+                      switchOnOff = value;
+                      setState(() {
+                        decisionOnOff();
+                      });
+                    }),
+              ],
             ),
             ElevatedButton(
-              onPressed: () {
-                decisionLamp();
-              }, child: const Text("OK"))
+                onPressed: () {
+                  decisionLamp();
+                },
+                child: const Text("OK"))
           ],
         ),
       ),
@@ -73,10 +73,10 @@ class _ModifyState extends State<Modify> {
   }
 
   //function
-  //스위치 글자 바꾸기 
+  //스위치 글자 바꾸기
   decisionOnOff() {
     //true
-    if(switchOnOff) {
+    if (switchOnOff) {
       lights = "On";
       Message.imageName = "images/lamp_on.png";
     } //fasle
@@ -92,7 +92,6 @@ class _ModifyState extends State<Modify> {
     list.add(controller.text);
     list.add(imageName);
     list.add(switchOnOff.toString());
-    Navigator.pop(context,list);
+    Navigator.pop(context, list);
   }
-
 } //end

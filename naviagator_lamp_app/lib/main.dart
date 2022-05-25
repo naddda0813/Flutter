@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -32,10 +31,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //property
-  late TextEditingController controller;    //글자입력
-  late String imageName;    //이미지 
-  late bool switchOnOff;     //스위치
-  late String lighting;       //글입력 
+  late TextEditingController controller; //글자입력
+  late String imageName; //이미지
+  late bool switchOnOff; //스위치
+  late String lighting; //글입력
 
   @override
   void initState() {
@@ -43,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     controller = TextEditingController();
     imageName = Message.imageName;
     switchOnOff = Message.switchOnOff;
-    lighting =Message.lighting;
+    lighting = Message.lighting;
   }
 
   @override
@@ -53,61 +52,50 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("main 화면"),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (context) => 
-                  Modify(text: controller.text, 
-                  lighting: switchOnOff,)))
-                  .then((value) => rebuild(value));
-
-            }, icon: Icon(Icons.edit))
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Modify(
+                              text: controller.text,
+                              lighting: switchOnOff,
+                            ))).then((value) => rebuild(value));
+              },
+              icon: Icon(Icons.edit))
         ],
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment:  MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: controller,
-                decoration: InputDecoration(
-                  labelText: "글자를 입력하세요"
-                ),
+                decoration: InputDecoration(labelText: "글자를 입력하세요"),
               ),
             ),
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
-              width: 200,
-              child: Image.asset(imageName)),
+            SizedBox(width: 200, child: Image.asset(imageName)),
           ],
         ),
       ),
     );
   }
 
-rebuild(value) {
-  print(value[2]); 
-  setState(() {
-    controller.text = value[0];
-    imageName = value[1];
-    if(value[2] == false) {  //switch
-      switchOnOff = false;
-    } else {
-       switchOnOff = true;
-    }
-
-  });
+  rebuild(value) {
+    print(value[2]);
+    setState(() {
+      controller.text = value[0];
+      imageName = value[1];
+      if (value[2] == false) {
+        //switch
+        switchOnOff = false;
+      } else {
+        switchOnOff = true;
+      }
+    });
+  }
 }
-
-
-}
-
-
-
-
-
