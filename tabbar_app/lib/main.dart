@@ -76,9 +76,9 @@ with SingleTickerProviderStateMixin{
                 icon: Icon(Icons.looks_one,
                 color: Colors.blue,
                 ),
+                
               text: "One"
               ),
-              
               Tab(
                 icon: Icon(Icons.looks_two,
                 color: Colors.red,
