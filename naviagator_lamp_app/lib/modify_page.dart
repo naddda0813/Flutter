@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naviagator_lamp_app/main.dart';
 import 'package:naviagator_lamp_app/message.dart';
 
 class Modify extends StatefulWidget {
